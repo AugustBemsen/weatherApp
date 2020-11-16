@@ -1,9 +1,9 @@
 {
-  "short_name": "BNM",
-  "name": "Activate You Account",
+  "short_name": "la tempête",
+  "name": "Your Weather Today",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "icon.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     }
