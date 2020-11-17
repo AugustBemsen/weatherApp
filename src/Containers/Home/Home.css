@@ -2,6 +2,7 @@
     background: linear-gradient(#6bcdc8, #b7cfd5);
     width: 100%;
     height: 100vh;
+    position: relative;
 }
 
 .BodyWrapper {
@@ -12,6 +13,20 @@
     transform: translate(-50%, -50%);
     color: #fff;
     text-transform: capitalize;
+}
+
+.Cloud1 {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 100px;
+}
+
+.Cloud2 {
+    position: absolute;
+    top: 23%;
+    right: 5%;
+    width: 100px;
 }
 
 /* Hero Section */
@@ -66,7 +81,7 @@
     margin: auto;
     padding: 1rem;
     padding-left: 38px;
-    border: .3px solid black;
+    border: none;
     font-size: 0.9rem;
 }
 
