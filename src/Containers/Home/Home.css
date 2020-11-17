@@ -1,0 +1,14 @@
+#find {
+    background-color: white;
+    background-image: url('../../Components/Imgs/search.png');
+    background-position: 15px 16px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    width: 80%;
+    padding: 0.9rem;
+    padding-left: 40px;
+    margin: auto;
+    border: .3px solid black;
+    border-radius: 50px;
+    font-size: 1.2rem;
+}
