@@ -30,9 +30,10 @@
 .Cloud1 {
     position: absolute;
     top: 10%;
-    left: 10%;
+    left: -100px;
     width: 100px;
-    animation: animateClouds 100s linear infinite;
+    animation: animateClouds 200s linear infinite;
+    animation-delay: 6s;
 }
 
 .Cloud2 {
