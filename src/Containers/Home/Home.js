@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Home.css";
 import Logo from "../../Components/Imgs/Logo.png";
 import Cloud from "../../Components/Imgs/cloud.svg";
 import Land from "../../Components/Imgs/land.svg";
 
 const Home = (props) => {
+  //  States
   const [currentTime, setCurrentTime] = useState("Good Morning");
+
+  //  UseRefs
+
+  const starsRef = useRef(null);
 
   const setTimeHandler = () => {
     const now = new Date();
@@ -17,14 +22,35 @@ const Home = (props) => {
       setCurrentTime("Good Evening");
     }
   };
+
+  const starGenerator = () => {
+    const count = 120;
+    const scene = starsRef.current;
+    for (let index = 0; index <= count; index++) {
+      let star = document.createElement("i");
+      let w = Math.floor(Math.random() * window.innerWidth);
+      let h = Math.floor(Math.random() * window.innerHeight);
+      let duration = Math.random() * 10;
+      let size = Math.random() * 2;
+
+      star.style.left = w + "px";
+      star.style.top = h + "px";
+      star.style.width = 1 + size + "px";
+      star.style.height = 1 + size + "px";
+      star.style.animationDuration = 5 + duration + "s";
+      star.style.animationDelay = duration + "s";
+      scene.appendChild(star);
+    }
+  };
+
   useEffect(() => {
     setTimeHandler();
+    starGenerator();
   }, []);
 
   return (
     <div className="Home">
-      <div id="stars"></div>
-      <div id="stars2"></div>
+      <div id="stars" ref={starsRef}></div>
       <img src={Cloud} alt="cloud" className="Cloud1" />
       <img src={Cloud} alt="cloud" className="Cloud2" />
       <img src={Land} alt="cloud" className="Land" />
