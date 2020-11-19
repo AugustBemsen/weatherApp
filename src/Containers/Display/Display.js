@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./Display.css";
-import { AiOutlineClockCircle } from "react-icons/ai";
+import { AiOutlineClockCircle, AiOutlineSearch } from "react-icons/ai";
 import Moon from "../../Components/Imgs/moon.png";
 import Sun from "../../Components/Imgs/sun.png";
+import { Link } from "react-router-dom";
 
 const Display = ({ match }) => {
   const API_KEY = process.env.REACT_APP_Key;
@@ -49,15 +50,12 @@ const Display = ({ match }) => {
     setTimeHandler();
     // eslint-disable-next-line
   }, []);
-
   return (
     <div className="Display">
       <div className="UpperSection">
-        <div className="Upper1"></div>
-        <div className="Upper2"></div>
-        <div className="Upper3"></div>
-        <div className="Upper4"></div>
-        <div className="Upper5"></div>
+        <Link to="/">
+          <AiOutlineSearch className="HomeIcon" />
+        </Link>
       </div>
       <div className="LowerSection">
         {results ? (
@@ -75,16 +73,18 @@ const Display = ({ match }) => {
               <div className="Moon">
                 <img
                   src={dayTime === "day" ? Sun : Moon}
-                // src={`http://openweathermap.org/img/w/${results.weather[0].icon}.png`}
+                  // src={`http://openweathermap.org/img/w/${results.weather[0].icon}.png`}
                   alt="weather"
                   className="MoonImg"
                 />
               </div>
               <p className="CloudState">{results.weather[0].description}</p>
-              <h1 className="Degree">{Math.round(results.main.temp - 273.15) } &#176;</h1>
+              <h1 className="Degree">
+                {Math.round(results.main.temp - 273.15)} &#176;
+              </h1>
               <p className="Humility">
-                H {Math.round(results.main.temp_max - 273.15)}&#176;
-                L {Math.round(results.main.temp_min - 273.15)}&#176;
+                H {Math.round(results.main.temp_max - 273.15)}&#176; L{" "}
+                {Math.round(results.main.temp_min - 273.15)}&#176;
               </p>
               <p className="SmallT">Winds: {results.wind.speed} MPH</p>
             </div>
