@@ -17,7 +17,7 @@ const Display = ({ match }) => {
   const fetchWeather = () => {
     if (query !== "") {
       fetch(
-        `http://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${API_KEY}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${API_KEY}`
       )
         .then((res) => res.json())
         .then((data) => setResults(data))
