@@ -10,7 +10,6 @@ const Home = (props) => {
   const [words, setWords] = useState("");
   const [query, setQuery] = useState("");
 
-  const API_KEY = process.env.REACT_APP_Key;
   //  UseRefs
   const starsRef = useRef(null);
 
@@ -57,12 +56,7 @@ const Home = (props) => {
 
   const fetchWeather = () => {
     if (query !== "") {
-      fetch(
-        `http://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${API_KEY}`
-      )
-        .then((res) => res.json())
-        .then((data) => console.log(data))
-        .catch((err) => console.log(err));
+      props.history.push({ pathname: "/weather/" + query});
     }
   };
 

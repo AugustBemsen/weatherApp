@@ -1,41 +1,11 @@
 .UpperSection {
-    background: url("../../Components/Imgs/upperbg.png");
+    background: url("../../Components/Imgs/upperbg.svg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
     height: 30vh;
 }
-/*
-.Upper1 {
-    width: 100%;
-    height: 20%;
-    background: #6bcdc8;
-}
- 
-.Upper2 {
-    width: 100%;
-    height: 20%;
-    background: #6bcdc8;
-}
-
-.Upper3 {
-    width: 100%;
-    height: 20%;
-    background: #6bcdc8;
-}
-
-.Upper4 {
-    width: 100%;
-    height: 20%;
-    background: #6bcdc8;
-}
-
-.Upper5 {
-    width: 100%;
-    height: 20%;
-    background: #6bcdc8;
-} */
 
 .LowerSection {
     overflow: hidden;

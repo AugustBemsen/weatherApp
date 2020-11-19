@@ -14,7 +14,7 @@ const App = (props) => {
       <Router>
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/display" component={Display} />
+          <Route path="/weather/:city" component={Display} />
         </Switch>
       </Router>
     </div>
