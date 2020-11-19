@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import "./Display.css";
+import { Link } from "react-router-dom";
+import Loader from "react-loader-spinner";
 import { AiOutlineClockCircle, AiOutlineSearch } from "react-icons/ai";
+import "./Display.css";
 import Moon from "../../Components/Imgs/moon.png";
 import Sun from "../../Components/Imgs/sun.png";
-import { Link } from "react-router-dom";
 
 const Display = ({ match }) => {
   const API_KEY = process.env.REACT_APP_Key;
@@ -83,14 +84,22 @@ const Display = ({ match }) => {
                 {Math.round(results.main.temp - 273.15)} &#176;
               </h1>
               <p className="Humility">
-                H {Math.round(results.main.temp_max - 273.15)}&#176; L{" "}
-                {Math.round(results.main.temp_min - 273.15)}&#176;
+                H {Math.round(results.main.temp_max - 273.15)}&#176;
+                L {Math.round(results.main.temp_min - 273.15)}&#176;
               </p>
               <p className="SmallT">Winds: {results.wind.speed} MPH</p>
             </div>
           </>
         ) : (
-          "Loading..."
+          <div className="Loading">
+            <Loader
+              type="Oval"
+              color="#6bcdc8"
+              height={100}
+              width={100}
+              timeout={4000}
+            />
+          </div>
         )}
       </div>
     </div>

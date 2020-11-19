@@ -73,3 +73,10 @@
     display: block;
     margin: 0.5rem auto 1rem;
 }
+
+.Loading {
+    position: fixed;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, -50%);
+}
