@@ -4,8 +4,6 @@
     height: 100vh;
     position: relative;
     overflow: hidden;
-    /* filter: invert(1) hue-rotate(260deg) */
-    /* filter: invert(1); */
 }
 
 .BodyWrapper {

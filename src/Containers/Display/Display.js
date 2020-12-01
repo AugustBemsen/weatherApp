@@ -12,6 +12,7 @@ const Display = ({ match }) => {
   const [dayTime, setDayTime] = useState("day");
   const [time, setTime] = useState(null);
   const [results, setResults] = useState(null);
+  const [resultError, setResultError] = useState(false);
   const query = match.params.city;
 
   const fetchWeather = () => {
@@ -20,8 +21,16 @@ const Display = ({ match }) => {
         `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${API_KEY}`
       )
         .then((res) => res.json())
-        .then((data) => setResults(data))
-        .catch((err) => console.log(err));
+        .then((data) => {
+          setResults(data);
+          if (!data) {
+            setResultError(true);
+          }
+        })
+        .catch((err) => {
+          console.log(26, err);
+          setResultError(true);
+        });
     }
   };
 
@@ -51,6 +60,43 @@ const Display = ({ match }) => {
     setTimeHandler();
     // eslint-disable-next-line
   }, []);
+
+  let foundResult = <p className="Loading">Nothing found</p>;
+  if (!resultError) {
+    foundResult = (
+      <>
+        <div className="HeroFlex">
+          <p className="Time">
+            <AiOutlineClockCircle className="Icons" />
+            {time}
+          </p>
+          <p className="Location">
+            {results.name} {results.sys.country}
+          </p>
+        </div>
+        <div className="WriteUps">
+          {console.log(results)}
+          <div className="Moon">
+            <img
+              src={dayTime === "day" ? Sun : Moon}
+              alt="weather"
+              className="MoonImg"
+            />
+          </div>
+          <p className="CloudState">{results.weather[0].description}</p>
+          <h1 className="Degree">
+            {Math.round(results.main.temp - 273.15)} &#176;
+          </h1>
+          <p className="Humility">
+            H {Math.round(results.main.temp_max - 273.15)}&#176; L
+            {Math.round(results.main.temp_min - 273.15)}&#176;
+          </p>
+          <p className="SmallT">Winds: {results.wind.speed} MPH</p>
+        </div>
+      </>
+    );
+  }
+
   return (
     <div className="Display">
       <div className="UpperSection">
@@ -60,36 +106,7 @@ const Display = ({ match }) => {
       </div>
       <div className="LowerSection">
         {results ? (
-          <>
-            <div className="HeroFlex">
-              <p className="Time">
-                <AiOutlineClockCircle className="Icons" />
-                {time}
-              </p>
-              <p className="Location">
-                {results.name} {results.sys.country}
-              </p>
-            </div>
-            <div className="WriteUps">
-              <div className="Moon">
-                <img
-                  src={dayTime === "day" ? Sun : Moon}
-                  // src={`http://openweathermap.org/img/w/${results.weather[0].icon}.png`}
-                  alt="weather"
-                  className="MoonImg"
-                />
-              </div>
-              <p className="CloudState">{results.weather[0].description}</p>
-              <h1 className="Degree">
-                {Math.round(results.main.temp - 273.15)} &#176;
-              </h1>
-              <p className="Humility">
-                H {Math.round(results.main.temp_max - 273.15)}&#176;
-                L {Math.round(results.main.temp_min - 273.15)}&#176;
-              </p>
-              <p className="SmallT">Winds: {results.wind.speed} MPH</p>
-            </div>
-          </>
+          foundResult
         ) : (
           <div className="Loading">
             <Loader
