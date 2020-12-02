@@ -12,7 +12,7 @@ const Display = ({ match }) => {
   const [dayTime, setDayTime] = useState("day");
   const [time, setTime] = useState(null);
   const [results, setResults] = useState(null);
-  const [resultError, setResultError] = useState(false);
+  // const [resultError, setResultError] = useState(false);
   const query = match.params.city;
 
   const fetchWeather = () => {
@@ -23,13 +23,13 @@ const Display = ({ match }) => {
         .then((res) => res.json())
         .then((data) => {
           setResults(data);
-          if (!data) {
-            setResultError(true);
-          }
+          // if (!data) {
+          //   setResultError(true);
+          // }
         })
         .catch((err) => {
           console.log(26, err);
-          setResultError(true);
+          // setResultError(true);
         });
     }
   };
@@ -61,10 +61,16 @@ const Display = ({ match }) => {
     // eslint-disable-next-line
   }, []);
 
-  let foundResult = <p className="Loading">Nothing found</p>;
-  if (!resultError) {
-    foundResult = (
-      <>
+  return (
+    <div className="Display">
+      <div className="UpperSection">
+        <Link to="/">
+          <AiOutlineSearch className="HomeIcon" />
+        </Link>
+      </div>
+      <div className="LowerSection">
+        {results ? (
+          <>
         <div className="HeroFlex">
           <p className="Time">
             <AiOutlineClockCircle className="Icons" />
@@ -94,19 +100,6 @@ const Display = ({ match }) => {
           <p className="SmallT">Winds: {results.wind.speed} MPH</p>
         </div>
       </>
-    );
-  }
-
-  return (
-    <div className="Display">
-      <div className="UpperSection">
-        <Link to="/">
-          <AiOutlineSearch className="HomeIcon" />
-        </Link>
-      </div>
-      <div className="LowerSection">
-        {results ? (
-          foundResult
         ) : (
           <div className="Loading">
             <Loader
